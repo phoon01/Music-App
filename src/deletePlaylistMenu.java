@@ -94,6 +94,12 @@ public class deletePlaylistMenu extends JFrame {
 
             statement.execute(deleteQuery);
 
+            Connection connection1 = DriverManager.getConnection(url,user,pass);
+            String tableName1 = "\"Project\".\"playlists_content\"";
+            statement = connection1.createStatement();
+            String deleteContentQuery = "delete from "+tableName1+" where email = '{"+email+"}' and playlist_name = '{"+title+"}'";
+            statement.execute(deleteContentQuery);
+
             JOptionPane.showMessageDialog(new JFrame(),"Successfully deleted!","OK",JOptionPane.INFORMATION_MESSAGE,smile_face);
 
         } catch (SQLException e) {
